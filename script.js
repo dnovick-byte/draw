@@ -9,7 +9,7 @@ const resetButton = document.getElementById("reset-btn");
 
 let gridSize = 24;
 let isDrawing = false;
-
+let bgColor = "#FFFFFF";
 
 function createGrid(size, bgColor="rgb(255, 255, 255)") { // draws new grid
     gridSize = size;
@@ -46,7 +46,7 @@ document.addEventListener("mouseup", () => {
 sizeSlider.addEventListener("input", (event) => { //  when new grid size, reset to new size
     gridSize = event.target.value;
     sizeLabel.textContent = `Grid Size ${gridSize} x ${gridSize}`;
-    const bgColor = hexToRGB(backgroundPicker.value);
+    bgColor = hexToRGB(backgroundPicker.value);
     createGrid(gridSize, bgColor);
 })
 
@@ -54,7 +54,7 @@ sizeSlider.addEventListener("input", (event) => { //  when new grid size, reset 
 
 function resetBoard() {
     console.log('reset');
-    const bgColor = backgroundPicker.value;
+    bgColor = backgroundPicker.value;
     createGrid(gridSize, bgColor);
 }
 
@@ -86,10 +86,12 @@ shadeButton.addEventListener('click', () => {
         shadeButton.classList.toggle('active');
         lighten = false;
         lightenButton.classList.remove('active');
-
+        erase=false;
+        eraseButton.classList.remove('active');
     }
 });
 
+// lighten tool
 const lightenButton = document.getElementById("lighten-btn");
 let lighten = false;
 lightenButton.addEventListener('click', () => {
@@ -101,6 +103,26 @@ lightenButton.addEventListener('click', () => {
         lightenButton.classList.toggle('active');
         shade = false;
         shadeButton.classList.remove('active');
+        erase=false;
+        eraseButton.classList.remove('active');
+
+    }
+});
+
+// erase tool
+const eraseButton = document.getElementById("erase-btn");
+let erase = false;
+eraseButton.addEventListener('click', () => {
+    if (erase) {
+        erase = false;
+        eraseButton.classList.remove('active');
+    } else {
+        erase = true;
+        eraseButton.classList.toggle('active');
+        shade = false;
+        shadeButton.classList.remove('active');
+        lighten = false;
+        lightenButton.classList.remove('active');
 
     }
 });
@@ -126,7 +148,9 @@ function drawClick(e) {
     if (shade) {
         e.target.style.backgroundColor = shaded(e.target.style.backgroundColor, -5); // shade down 10%
     } else if (lighten) {
-        e.target.style.backgroundColor = shaded(e.target.style.backgroundColor, 5); // shade down 10%
+        e.target.style.backgroundColor = shaded(e.target.style.backgroundColor, 5); // lighten up 10%
+    } else if (erase) {
+        e.target.style.backgroundColor = bgColor;
     } else {
         e.target.style.backgroundColor = colorPicker.value;
     }
@@ -137,7 +161,9 @@ function drawClickHover(e) {
         if (shade) {
             e.target.style.backgroundColor = shaded(e.target.style.backgroundColor, -5); // shade down 10%
         } else if (lighten) {
-            e.target.style.backgroundColor = shaded(e.target.style.backgroundColor, 5); // shade down 10%
+            e.target.style.backgroundColor = shaded(e.target.style.backgroundColor, 5); // lighten up 10%
+        } else if (erase) {
+            e.target.style.backgroundColor = bgColor;
         } else {
             e.target.style.backgroundColor = colorPicker.value;
         }
