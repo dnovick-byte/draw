@@ -11,7 +11,7 @@ let gridSize = 24;
 let isDrawing = false;
 
 
-function createGrid(size, bgColor="rgb(245, 241, 227)") { // draws new grid
+function createGrid(size, bgColor="rgb(255, 255, 255)") { // draws new grid
     gridSize = size;
     grid.innerHTML = ""; // clear previous grid
     grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`; // draws columns
