@@ -72,19 +72,13 @@ function screenShot() {
 };
 
 
-
 // toggle grid lines
-const gridButton = document.getElementById("grid-btn");
-gridButton.classList.toggle('active');
+gridButton = document.getElementById("grid-btn");
+gridButton.classList.add('active');  // initial state
 gridButton.addEventListener('click', () => {
     gridButton.classList.toggle('active');
-
-    const cells = document.querySelectorAll('.cell');
-    let togGrid = (cells[0].style.border === "none" ? ".5px solid #ddd" : "none")
-    cells.forEach(cell => {
-        cell.style.border = togGrid;
-    });
 });
+
 
 // shading tool
 const shadeButton = document.getElementById("shade-btn");

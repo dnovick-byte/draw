@@ -15,12 +15,7 @@ body {
     width: 600px;
     height: 600px;
     border: 2px solid black;
-}
-
-.cell {
-    border: .5px solid #ddd; /* Light grid lines */
-}
-  
+}  
 
 .bar {
     padding: 10px;
@@ -97,6 +92,18 @@ body {
     border-color: #333;
     box-shadow: 0 0 5px rgba(0,0,0,0.3);  
 }
+
+/* By default, cells have no border */
+.cell {
+    border: none;
+}
+
+.content:has(#grid-btn.active) #grid .cell {
+    border: 0.5px solid #ddd;
+}
+
+
+
 
 #reset-btn {
     padding: 10px 20px;
