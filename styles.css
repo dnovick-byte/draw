@@ -42,3 +42,61 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
+#lighten-btn {
+    padding: 10px 20px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    background-color: var(--color-secondary);
+    color: #333;
+    cursor: pointer;
+}
+
+/* Style for when button is toggled/active */
+#lighten-btn.active {
+    background-color: var(--color-third);
+    color: white;
+    border-color: #333;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+#shade-btn {
+    padding: 10px 20px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    background-color: var(--color-secondary);
+    color: #333;
+    cursor: pointer;
+}
+
+#shade-btn.active {
+    background-color: var(--color-third);
+    color: white;
+    border-color: #333;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);  
+}
+
+#grid-btn {
+    padding: 10px 20px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    background-color: var(--color-secondary);
+    color: #333;
+    cursor: pointer;  
+}
+
+#grid-btn.active {
+    background-color: var(--color-third);
+    color: white;
+    border-color: #333;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);  
+}
+
+#reset-btn {
+    padding: 10px 20px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    background-color: var(--color-secondary);
+    color: #333;
+    cursor: pointer;   
+}

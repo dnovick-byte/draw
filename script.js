@@ -4,7 +4,7 @@ const colorPicker = document.getElementById("colorPicker");
 const sizeSlider = document.getElementById("sizeSlider");
 const sizeLabel = document.getElementById("sizeLabel");
 const backgroundPicker = document.getElementById("backgroundPicker");
-const resetButton = document.getElementById("resetButton");
+const resetButton = document.getElementById("reset-btn");
 
 
 let gridSize = 24;
@@ -63,7 +63,10 @@ resetButton.addEventListener("click", resetBoard); // when reset button is click
 
 // toggle grid lines
 const gridButton = document.getElementById("grid-btn");
+gridButton.classList.toggle('active');
 gridButton.addEventListener('click', () => {
+    gridButton.classList.toggle('active');
+
     const cells = document.querySelectorAll('.cell');
     let togGrid = (cells[0].style.border === "none" ? ".5px solid #ddd" : "none")
     cells.forEach(cell => {
@@ -75,10 +78,34 @@ gridButton.addEventListener('click', () => {
 const shadeButton = document.getElementById("shade-btn");
 let shade = false;
 shadeButton.addEventListener('click', () => {
-    shade = !shade;
+    if (shade) {
+        shade = false;
+        shadeButton.classList.remove('active');
+    } else {
+        shade = true;
+        shadeButton.classList.toggle('active');
+        lighten = false;
+        lightenButton.classList.remove('active');
+
+    }
 });
 
-function shaded(color) {
+const lightenButton = document.getElementById("lighten-btn");
+let lighten = false;
+lightenButton.addEventListener('click', () => {
+    if (lighten) {
+        lighten = false;
+        lightenButton.classList.remove('active');
+    } else {
+        lighten = true;
+        lightenButton.classList.toggle('active');
+        shade = false;
+        shadeButton.classList.remove('active');
+
+    }
+});
+
+function shaded(color, percent) {
     // Parse RGB values
     const values = color.match(/\d+/g);
     let r = parseInt(values[0]);
@@ -86,9 +113,10 @@ function shaded(color) {
     let b = parseInt(values[2]);
 
     // Adjust each color channel
-    r = Math.min(255, Math.max(0, r * (1 -10/100)));
-    g = Math.min(255, Math.max(0, g * (1 -10/100)));
-    b = Math.min(255, Math.max(0, b * (1 -10/100)));
+    const change = Math.floor(255 * (percent/100));
+    r = Math.min(255, Math.max(0, r + change));
+    g = Math.min(255, Math.max(0, g + change));
+    b = Math.min(255, Math.max(0, b + change));
 
     return `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})`;
 }
@@ -96,7 +124,9 @@ function shaded(color) {
 function drawClick(e) {
     isDrawing = true; // Start drawing mode
     if (shade) {
-        e.target.style.backgroundColor = shaded(e.target.style.backgroundColor);
+        e.target.style.backgroundColor = shaded(e.target.style.backgroundColor, -5); // shade down 10%
+    } else if (lighten) {
+        e.target.style.backgroundColor = shaded(e.target.style.backgroundColor, 5); // shade down 10%
     } else {
         e.target.style.backgroundColor = colorPicker.value;
     }
@@ -105,9 +135,10 @@ function drawClick(e) {
 function drawClickHover(e) {
     if (isDrawing) {
         if (shade) {
-            e.target.style.backgroundColor = shaded(e.target.style.backgroundColor);
-        }
-        else {
+            e.target.style.backgroundColor = shaded(e.target.style.backgroundColor, -5); // shade down 10%
+        } else if (lighten) {
+            e.target.style.backgroundColor = shaded(e.target.style.backgroundColor, 5); // shade down 10%
+        } else {
             e.target.style.backgroundColor = colorPicker.value;
         }
     }
