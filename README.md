@@ -1,5 +1,5 @@
 # draw.
-Create your own sketch art.  
+Create your own pixel art.  
 ## Features
 - Choose your pen color
 - Choose your background color
