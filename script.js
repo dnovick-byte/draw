@@ -4,7 +4,10 @@ const colorPicker = document.getElementById("colorPicker");
 const sizeSlider = document.getElementById("sizeSlider");
 const sizeLabel = document.getElementById("sizeLabel");
 const backgroundPicker = document.getElementById("backgroundPicker");
-const resetButton = document.getElementById("reset-btn");
+
+
+document.getElementById("reset-btn").addEventListener("click", resetBoard); // reset button -> reset function
+document.getElementById('screenshot-btn').addEventListener("click", screenShot); // screenshot button -> screenshot function
 
 
 let gridSize = 24;
@@ -58,7 +61,16 @@ function resetBoard() {
     createGrid(gridSize, bgColor);
 }
 
-resetButton.addEventListener("click", resetBoard); // when reset button is clicked, called resetBoard function
+function screenShot() {
+    console.log('screenshot');
+    html2canvas(document.getElementById("grid")).then(canvas => {
+        let link = document.createElement("a");
+        link.href = canvas.toDataURL("image/png");
+        link.download = "screenshot.png";
+        link.click();
+    });
+};
+
 
 
 // toggle grid lines
