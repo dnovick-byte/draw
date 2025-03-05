@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>draw</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1> draw. </h1>
+  
+    <div class="content">
+        <div class="bar">
+            <div class="pen-color">
+                <label for="colorPicker">Pen Color: </label>
+                <input type="color" id="colorPicker">
+            </div>
+            <div class="background-color">
+                <label for="backgroundPicker">Background Color: </label>
+                <input type="color" id="backgroundPicker">
+            </div>
+
+
+            <div class="size">
+                <input type="range" id="sizeSlider" min="1" max="100" value="10">
+                <label id="sizeLabel">Grid Size: 24 x 24</label>
+            </div>
+
+            <button id="resetButton">Reset Board</button>
+
+        
+        </div>
+
+        <div id="grid"></div>
+    </div>
+    
+    
+    <script src="script.js"></script>
+  </body>
+  </html>

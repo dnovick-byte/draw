@@ -1,0 +1,40 @@
+@import 'vars.css';
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    margin: 0; /* Remove default margin */
+    background: var(--color-primary);
+}
+  
+#grid {
+    display: grid;
+    width: 600px;
+    height: 600px;
+    border: 2px solid black;
+}
+  /*
+  .cell {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  */
+.cell {
+    border: 1px solid #ddd; /* Light grid lines */
+}
+  
+  .cell:hover {
+    border: 1px solid black;
+  }
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
